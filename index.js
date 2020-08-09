@@ -16,6 +16,9 @@ const server = app.listen(5000, () => {
 const io = socket(server);
 
 io.on("connection", (socket) => {
-  console.log(socket);
-  console.log("Connection made");
+  console.log("SocketId: ", socket.id);
+  console.log("Socket Connection made");
+  socket.on("chat", (data) => {
+    io.sockets.emit("chat", data);
+  });
 });
